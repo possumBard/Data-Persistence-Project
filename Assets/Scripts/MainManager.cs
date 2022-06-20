@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
+    public Text PlayerNameText;
     
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +40,8 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        DisplayName();
     }
 
     private void Update()
@@ -62,6 +68,8 @@ public class MainManager : MonoBehaviour
         }
     }
 
+    
+
     void AddPoint(int point)
     {
         m_Points += point;
@@ -72,5 +80,10 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+    }
+
+    public void DisplayName()
+    {
+        PlayerNameText.text = "Player Name: " + DataManager.Instance.playerName;
     }
 }
